@@ -9,18 +9,18 @@ readme = "README.md"
 python = ">=3.10,<3.11"
 hydra-core = "~=1.3.2"
 pydantic = "~=2.9.1"
-pandas = "~=2.0"
-nltk = "~=3.8"
+pandas = "~=2.2"
+nltk = "~=3.9"
 symspellpy = "~=6.7"
-fsspec = {version = "~=2023.5", extras= ["gcs"]}
-gcsfs = "~=2023.5"
-google-cloud-secret-manager = "~=2.16"
-fastparquet = "~=2023.4"
-dvc = {version = "~=2.56", extras = ["gdrive", "gs"]}
-dask = {version = "~=2023.5", extras = ["complete"]}
-distributed = "~=2023.5"
-dask-cloudprovider = {version = "~=2022.10", extras=["gcp"]}
-dask-ml = "~=2023.3"
+fsspec = {version = "~=2024.9", extras= ["gcs"]}
+gcsfs = "~=2024.9"
+google-cloud-secret-manager = "~=2.20.2"
+fastparquet = "~=2024.5"
+dvc = {version = "~=3.55.2", extras = ["gdrive", "gs"]}
+dask = {version = "~=2024.9", extras = ["complete"]}
+distributed = "~=2024.9"
+dask-cloudprovider = {version = "~=2024.9", extras=["gcp"]}
+dask-ml = "~=2024.4"
 
 
 [tool.poetry.group.dev.dependencies]
