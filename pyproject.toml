@@ -21,7 +21,11 @@ dask = {version = "~=2024.9", extras = ["complete"]}
 distributed = "~=2024.9"
 dask-cloudprovider = {version = "~=2024.9", extras=["gcp"]}
 dask-ml = "~=2024.4"
+bokeh = "~=3.5.2"
 
+# Tokenization
+tokenizers = "~=0.20"
+transformers = "~=4.45.1"
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "~=4.2"

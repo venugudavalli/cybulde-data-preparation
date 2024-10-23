@@ -13,11 +13,16 @@ else
 endif
 
 SERVICE_NAME = app
-CONTAINER_NAME = cybulde-data-preparation-container
+CONTAINER_NAME = cybulde-data-processing-container
 
 DIRS_TO_VALIDATE = cybulde
+
 DOCKER_COMPOSE_RUN = $(DOCKER_COMPOSE_COMMAND) run --rm $(SERVICE_NAME)
 DOCKER_COMPOSE_EXEC = $(DOCKER_COMPOSE_COMMAND) exec $(SERVICE_NAME)
+
+LOCAL_DOCKER_IMAGE_TAG = cybulde-data-processing
+GCP_DOCKER_IMAGE_NAME = europe-west2-docker.pkg.dev/cybulde-435213/cybulde/cybulde-data-processing
+GCP_DOCKER_IMAGE_TAG := $(strip $(shell uuidgen))
 
 export
 
@@ -25,13 +30,49 @@ export
 guard-%:
 	@#$(or ${$*}, $(error $* is not set))
 
+#trial2:
+#	@echo "THIS IS TEST2: $(GCP_DOCKER_IMAGE_TAG)" 
+
+#trial1: trial2
+#	@echo "THIS IS TEST1: $(GCP_DOCKER_IMAGE_TAG)"
+
+## Generate final config for dask distributed 
+## CONFIG_NAME=<config_name> has to be provided.
+## For overrised use: OVERRIDES=<overrides>
+
+generate-final-config: up guard-CONFIG_NAME
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/generate_final_config.py --config-name $${CONFIG_NAME} --overrides docker_image_name=$(GCP_DOCKER_IMAGE_NAME) docker_image_tag=$(GCP_DOCKER_IMAGE_TAG) $${OVERRIDES}
+
+## generate final data processing config. For overrised use: OVERRIDES=<overrides>
+generate-final-data-processing-config: up
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/generate_final_config.py --config-name data_processing_config --overrides docker_image_name=$(GCP_DOCKER_IMAGE_NAME) docker_image_tag=$(GCP_DOCKER_IMAGE_TAG) $${OVERRIDES}
+
+## Tokenizer final configuration. For overrised use: OVERRIDES=<overrides>
+generate-final-tokenizer-training-config: up
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/generate_final_config.py --config-name tokenizer_training_config --overrides docker_image_name=$(GCP_DOCKER_IMAGE_NAME) docker_image_tag=$(GCP_DOCKER_IMAGE_TAG) $${OVERRIDES}
+
 ## Call entrypoint
 prepare-dataset: up
 	$(DOCKER_COMPOSE_EXEC) python ./cybulde/prepare_dataset.py
 
-process-data: up
+process-data: generate-final-data-processing-config push
 	$(DOCKER_COMPOSE_EXEC) python ./cybulde/process_data.py	
 
+## Train tokenizer model
+train-tokenizer: generate-final-tokenizer-training-config push
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/train_tokenizer.py
+
+local-process-data: generate-final-data-processing-config 
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/process_data.py	
+
+## Train tokenizer model locally
+local-train-tokenizer: generate-final-tokenizer-training-config
+	$(DOCKER_COMPOSE_EXEC) python ./cybulde/train_tokenizer.py
+## push docker image to GCP artifact registery
+push: build
+	gcloud auth configure-docker --quiet europe-west2-docker.pkg.dev
+	docker tag $(LOCAL_DOCKER_IMAGE_TAG):latest "$(GCP_DOCKER_IMAGE_NAME):$(GCP_DOCKER_IMAGE_TAG)"
+	docker push "$(GCP_DOCKER_IMAGE_NAME):$(GCP_DOCKER_IMAGE_TAG)"
 ## Starts jupyter lab
 notebook: up
 	$(DOCKER_COMPOSE_EXEC) jupyter-lab --ip 0.0.0.0 --port 8888 --no-browser

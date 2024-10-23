@@ -1,14 +1,19 @@
 import logging
 import socket
 import subprocess
+
 import pkg_resources
+
 from symspellpy import SymSpell
+
 
 def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(f"[{socket.gethostname()}] {name}")
 
+
 def run_shell_command(cmd: str) -> str:
     return subprocess.run(cmd, text=True, shell=True, check=True, capture_output=True).stdout
+
 
 class SpellCorrectionModel:
     def __init__(
@@ -34,4 +39,4 @@ class SpellCorrectionModel:
 
     def __call__(self, text: str) -> str:
         suggestion: str = self.model.lookup_compound(text, max_edit_distance=self.max_dictionary_edit_distance)[0].term
-        return  suggestion
+        return suggestion

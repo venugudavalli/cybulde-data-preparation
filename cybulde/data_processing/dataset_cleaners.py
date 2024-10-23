@@ -3,14 +3,13 @@ import string
 
 from abc import ABC, abstractmethod
 
-import nltk
-
+# import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 from cybulde.utils.utils import SpellCorrectionModel
 
-nltk.download("punkt_tab")
+# nltk.download("punkt_tab")
 
 
 class DatasetCleaner(ABC):

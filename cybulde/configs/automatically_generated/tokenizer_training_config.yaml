@@ -1,0 +1,40 @@
+infrastructure:
+  project_id: cybulde-435213
+  zone: europe-west2-b
+  network: default
+data_parquet_path: gs://abhideep/cybulde/data/processed/filtered_data/train.parquet
+text_column_name: cleaned_text
+tokenizer:
+  _targte_: cybulde.tokenization.tokenizers.HuggingFaceTokenizer
+  pre_tokenizer:
+    _targte_: tokenizers.pre_tokenizers.Whitespace
+  model:
+    _targte_: tokenizers.models.BEP
+    vocab: null
+    merges: null
+    cache_capacity: 10000
+    dropout: null
+    unk_token: '[UNK]'
+    fuse_unk: false
+  trainer:
+    _targte_: tokenizers.trainers.BpeTrainer
+    vocab_size: 30000
+    show_progress: true
+    min_frequency: 0
+    special_tokens:
+    - '[UNK]'
+    - '[CLS]'
+    - '[SEP]'
+    - '[PAD]'
+    - '[MASK]'
+    initial_alphabet: []
+  normalizer: null
+  decoder: null
+  post_processor: null
+  unk_token: '[UNK]'
+  cls_token: '[CLS]'
+  sep_token: '[SEP]'
+  pad_token: '[PAD]'
+  mask_token: '[MASK]'
+docker_image_name: europe-west2-docker.pkg.dev/cybulde-435213/cybulde/cybulde-data-processing
+docker_image_tag: 29047465-4ee5-4844-80be-43c27cc8b1a5
