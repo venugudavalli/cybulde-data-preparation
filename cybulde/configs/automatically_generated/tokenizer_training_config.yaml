@@ -5,11 +5,11 @@ infrastructure:
 data_parquet_path: gs://abhideep/cybulde/data/processed/filtered_data/train.parquet
 text_column_name: cleaned_text
 tokenizer:
-  _targte_: cybulde.tokenization.tokenizers.HuggingFaceTokenizer
+  _target_: cybulde.tokenization.tokenizers.HuggingFaceTokenizer
   pre_tokenizer:
-    _targte_: tokenizers.pre_tokenizers.Whitespace
+    _target_: tokenizers.pre_tokenizers.Whitespace
   model:
-    _targte_: tokenizers.models.BEP
+    _target_: tokenizers.models.BEP
     vocab: null
     merges: null
     cache_capacity: 10000
@@ -17,7 +17,7 @@ tokenizer:
     unk_token: '[UNK]'
     fuse_unk: false
   trainer:
-    _targte_: tokenizers.trainers.BpeTrainer
+    _target_: tokenizers.trainers.BpeTrainer
     vocab_size: 30000
     show_progress: true
     min_frequency: 0

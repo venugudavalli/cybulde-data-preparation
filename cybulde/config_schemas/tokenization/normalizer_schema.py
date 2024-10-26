@@ -7,12 +7,12 @@ from pydantic.dataclasses import dataclass
 
 @dataclass
 class NormalizerConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
 
 
 @dataclass
 class BertNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.BertNormalizer"
+    _target_: str = "tokenizers.normalizers.BertNormalizer"
     clean_text: bool = True
     handle_chinese_chars: bool = True
     strip_accents: bool = True
@@ -21,58 +21,58 @@ class BertNormalizerConfig(NormalizerConfig):
 
 @dataclass
 class LowercaseNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.Lowercase"
+    _target_: str = "tokenizers.normalizers.Lowercase"
 
 
 @dataclass
 class NFCNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.NFC"
+    _target_: str = "tokenizers.normalizers.NFC"
 
 
 @dataclass
 class NFDNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.NFD"
+    _target_: str = "tokenizers.normalizers.NFD"
 
 
 @dataclass
 class NFKCNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.NFKC"
+    _target_: str = "tokenizers.normalizers.NFKC"
 
 
 @dataclass
 class NFKDNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.NFKD"
+    _target_: str = "tokenizers.normalizers.NFKD"
 
 
 @dataclass
 class NmtNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.Nmt"
+    _target_: str = "tokenizers.normalizers.Nmt"
 
 
 @dataclass
 class ReplaceNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.Replace"
+    _target_: str = "tokenizers.normalizers.Replace"
     pattern: str = MISSING
     content: str = MISSING
 
 
 @dataclass
 class SequenceNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.Sequence"
+    _target_: str = "tokenizers.normalizers.Sequence"
     normalizers: list[NormalizerConfig] = field(default_factory=lambda: [])
     _normalizers_dict: dict[str, NormalizerConfig] = field(default_factory=lambda: {})
 
 
 @dataclass
 class StripNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.Strip"
+    _target_: str = "tokenizers.normalizers.Strip"
     left: bool = True
     right: bool = True
 
 
 @dataclass
 class StripAccentsNormalizerConfig(NormalizerConfig):
-    _targte_: str = "tokenizers.normalizers.StripAccents"
+    _target_: str = "tokenizers.normalizers.StripAccents"
 
 
 def setup_config() -> None:

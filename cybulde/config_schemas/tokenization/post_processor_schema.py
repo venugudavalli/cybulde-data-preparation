@@ -5,25 +5,25 @@ from pydantic.dataclasses import dataclass
 
 @dataclass
 class PostProcessorConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
 
 
 @dataclass
 class BertPostProcessorConfig(PostProcessorConfig):
-    _targte_: str = "tokenizers.processors.BertProcessing"
+    _target_: str = "tokenizers.processors.BertProcessing"
     sep: tuple[str, int] = MISSING
     cls: tuple[str, int] = MISSING
 
 
 @dataclass
 class ByteLevelPostProcessorConfig(PostProcessorConfig):
-    _targte_: str = "tokenizers.processors.ByteLevel"
+    _target_: str = "tokenizers.processors.ByteLevel"
     trim_offset: bool = True
 
 
 @dataclass
 class RobertaPostProcessorConfig(PostProcessorConfig):
-    _targte_: str = "tokenizers.processors.RobertaProcessing"
+    _target_: str = "tokenizers.processors.RobertaProcessing"
     sep: tuple[str, int] = MISSING
     cls: tuple[str, int] = MISSING
     trim_offset: bool = True

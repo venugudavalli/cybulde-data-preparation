@@ -13,7 +13,7 @@ SPLIT_DELIMITER_BEHAVIOUR_OPTIONS = {"removed", "isolated", "merged_with_previou
 
 @dataclass
 class TrainerConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
     vocab_size: Optional[int] = None
     show_progress: bool = True
     min_frequency: int = 0
@@ -30,14 +30,14 @@ class TrainerConfig:
 
 @dataclass
 class BpeTrainerConfig(TrainerConfig):
-    _targte_: str = "tokenizers.trainers.BpeTrainer"
+    _target_: str = "tokenizers.trainers.BpeTrainer"
     vocab_size: int = 30000
     initial_alphabet: list[str] = field(default_factory=lambda: [])
 
 
 @dataclass
 class UnigramTrainerConfig(TrainerConfig):
-    _targte_: str = "tokenizers.trainers.UnigramTrainer"
+    _target_: str = "tokenizers.trainers.UnigramTrainer"
     vocab_size: int = 8000
     initial_alphabet: Optional[list[str]] = None
     shrinking_factor: float = 0.75
@@ -48,12 +48,12 @@ class UnigramTrainerConfig(TrainerConfig):
 
 @dataclass
 class WordLevelTrainerConfig(TrainerConfig):
-    _targte_: str = "tokenizers.trainers.WordLevelTrainer"
+    _target_: str = "tokenizers.trainers.WordLevelTrainer"
 
 
 @dataclass
 class WordPieceTrainerConfig(TrainerConfig):
-    _targte_: str = "tokenizers.trainers.WordPieceTrainer"
+    _target_: str = "tokenizers.trainers.WordPieceTrainer"
     vocab_size: int = 30000
     limit_alphabet: Optional[int] = None
     initial_alphabet: list[str] = field(default_factory=lambda: [])
