@@ -6,7 +6,7 @@ from pydantic.dataclasses import dataclass
 
 @dataclass
 class DecoderConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
 
 
 @dataclass

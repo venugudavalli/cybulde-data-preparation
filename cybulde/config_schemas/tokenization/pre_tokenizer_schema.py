@@ -12,39 +12,39 @@ SPLIT_DELIMITER_BEHAVIOUR_OPTIONS = {"removed", "isolated", "merged_with_previou
 
 @dataclass
 class PreTokenizerConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
 
 
 @dataclass
 class BertPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.BertPreTokenizer"
+    _target_: str = "tokenizers.pre_tokenizers.BertPreTokenizer"
 
 
 @dataclass
 class ByteLevelPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.ByteLevelPreTokenizer"
+    _target_: str = "tokenizers.pre_tokenizers.ByteLevelPreTokenizer"
 
 
 @dataclass
 class CharDelimiterSplitPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.CharDelimiterSplit"
+    _target_: str = "tokenizers.pre_tokenizers.CharDelimiterSplit"
 
 
 @dataclass
 class DigitsPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Digits"
+    _target_: str = "tokenizers.pre_tokenizers.Digits"
     individual_digits: bool = False
 
 
 @dataclass
 class MetaspacePreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Metaspace"
+    _target_: str = "tokenizers.pre_tokenizers.Metaspace"
     replacement: str = "_"
 
 
 @dataclass
 class PunctuationPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Punctuation"
+    _target_: str = "tokenizers.pre_tokenizers.Punctuation"
     behaviour: str = "isolated"
 
     @field_validator("behaviour")
@@ -55,14 +55,14 @@ class PunctuationPreTokenizerConfig(PreTokenizerConfig):
 
 @dataclass
 class SequencePreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Sequence"
+    _target_: str = "tokenizers.pre_tokenizers.Sequence"
     pretokenizers: list[PreTokenizerConfig] = field(default_factory=lambda: [])
     _pretokenizers_dict: dict[str, PreTokenizerConfig] = field(default_factory=lambda: {})
 
 
 @dataclass
 class SplitPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Split"
+    _target_: str = "tokenizers.pre_tokenizers.Split"
     pattern: str = MISSING
     behaviour: str = MISSING
     invert: bool = True
@@ -75,17 +75,17 @@ class SplitPreTokenizerConfig(PreTokenizerConfig):
 
 @dataclass
 class UnicodeScriptsPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.UnicodeScripts"
+    _target_: str = "tokenizers.pre_tokenizers.UnicodeScripts"
 
 
 @dataclass
 class WhitespacePreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.Whitespace"
+    _target_: str = "tokenizers.pre_tokenizers.Whitespace"
 
 
 @dataclass
 class WhitespaceSplitPreTokenizerConfig(PreTokenizerConfig):
-    _targte_: str = "tokenizers.pre_tokenizers.WhitespaceSplit"
+    _target_: str = "tokenizers.pre_tokenizers.WhitespaceSplit"
 
 
 def setup_config() -> None:

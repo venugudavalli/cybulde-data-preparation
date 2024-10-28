@@ -7,12 +7,12 @@ from pydantic.dataclasses import dataclass
 
 @dataclass
 class ModelConfig:
-    _targte_: str = MISSING
+    _target_: str = MISSING
 
 
 @dataclass
 class BPEModelConfig(ModelConfig):
-    _targte_: str = "tokenizers.models.BEP"
+    _target_: str = "tokenizers.models.BEP"
     vocab: Optional[dict[str, int]] = None
     merges: Optional[list[Any]] = None
     cache_capacity: int = 10_000
@@ -23,20 +23,20 @@ class BPEModelConfig(ModelConfig):
 
 @dataclass
 class UnigramModelConfig(ModelConfig):
-    _targte_: str = "tokenizers.models.Unigram"
+    _target_: str = "tokenizers.models.Unigram"
     vocab: Optional[dict[str, float]] = None
 
 
 @dataclass
 class WordLevelModelConfig(ModelConfig):
-    _targte_: str = "tokenizers.models.WordLevel"
+    _target_: str = "tokenizers.models.WordLevel"
     vocab: Optional[dict[str, int]] = None
     unk_token: Optional[str] = SI("${tokenizer.unk_token}")
 
 
 @dataclass
 class WordPieceModelConfig(ModelConfig):
-    _targte_: str = "tokenizers.models.WordPiece"
+    _target_: str = "tokenizers.models.WordPiece"
     vocab: Optional[dict[str, int]] = None
     unk_token: Optional[str] = SI("${tokenizer.unk_token}")
     max_input_chars_per_word: Optional[int] = None
