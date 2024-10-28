@@ -6,6 +6,6 @@ print(tokenizer)
 
 text = ["Hello, world!"]
 
-encoded = tokenizer.batch_decode_plus(text)
+encoded = tokenizer.batch_encode_plus(text)
 
 print(encoded)

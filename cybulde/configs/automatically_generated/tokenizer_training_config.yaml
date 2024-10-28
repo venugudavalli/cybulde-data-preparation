@@ -9,7 +9,7 @@ tokenizer:
   pre_tokenizer:
     _target_: tokenizers.pre_tokenizers.Whitespace
   model:
-    _target_: tokenizers.models.BEP
+    _target_: tokenizers.models.BPE
     vocab: null
     merges: null
     cache_capacity: 10000
@@ -37,4 +37,4 @@ tokenizer:
   pad_token: '[PAD]'
   mask_token: '[MASK]'
 docker_image_name: europe-west2-docker.pkg.dev/cybulde-435213/cybulde/cybulde-data-processing
-docker_image_tag: 29047465-4ee5-4844-80be-43c27cc8b1a5
+docker_image_tag: bcde06b2-2b15-41b2-9479-891e2a7f1c2f

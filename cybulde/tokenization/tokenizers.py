@@ -49,7 +49,7 @@ class HuggingFaceTokenizer(BaseTokenizer):
         self.sep_token = sep_token
         self.pad_token = pad_token
         self.mask_token = mask_token
-        
+
         self.tokenizer = Tokenizer(model)
         self.tokenizer.pre_tokenizer = pre_tokenizer
         self.trainer = trainer

@@ -1,10 +1,10 @@
+# from pydantic.dataclasses import dataclass
+from dataclasses import dataclass
 from typing import Optional
 
 from hydra.core.config_store import ConfigStore
 from omegaconf import MISSING
 
-# from pydantic.dataclasses import dataclass
-from dataclasses import dataclass
 import cybulde.config_schemas.tokenization.decoder_schema as decoder_schemas
 import cybulde.config_schemas.tokenization.model_schema as model_schemas
 import cybulde.config_schemas.tokenization.normalizer_schema as normalizer_schemas
@@ -20,7 +20,7 @@ class TokenizerConfig:
 
 @dataclass
 class HuggingFaceTokenizerConfig(TokenizerConfig):
-    _targte_: str = "cybulde.tokenization.tokenizers.HuggingFaceTokenizer"
+    _target_: str = "cybulde.tokenization.tokenizers.HuggingFaceTokenizer"
     pre_tokenizer: pre_tokenizer_schemas.PreTokenizerConfig = MISSING
     model: model_schemas.ModelConfig = MISSING
     trainer: trainer_schemas.TrainerConfig = MISSING

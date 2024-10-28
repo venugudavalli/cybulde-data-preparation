@@ -48,7 +48,7 @@ class PunctuationPreTokenizerConfig(PreTokenizerConfig):
     behaviour: str = "isolated"
 
     @field_validator("behaviour")
-    def validate_behaviour(cls, behaviour: str)->str:
+    def validate_behaviour(cls, behaviour: str) -> str:
         validate_config_parameter_is_in(SPLIT_DELIMITER_BEHAVIOUR_OPTIONS, behaviour, "behaviour")
         return behaviour
 
@@ -68,7 +68,7 @@ class SplitPreTokenizerConfig(PreTokenizerConfig):
     invert: bool = True
 
     @field_validator("behaviour")
-    def validate_behaviour(cls, behaviour: str)->str:
+    def validate_behaviour(cls, behaviour: str) -> str:
         validate_config_parameter_is_in(SPLIT_DELIMITER_BEHAVIOUR_OPTIONS, behaviour, "behaviour")
         return behaviour
 
@@ -115,4 +115,9 @@ def setup_config() -> None:
         group="tokenizer/pre_tokenizer",
         name="whitespace_split_pre_tokenizer_schema",
         node=WhitespaceSplitPreTokenizerConfig,
+    )
+    cs.store(
+        group="tokenizer/pre_tokenizer",
+        name="whitespace_pre_tokenizer_schema",
+        node=WhitespacePreTokenizerConfig,
     )

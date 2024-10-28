@@ -105,8 +105,8 @@ def repartition_dataframe(
     nrof_partitions = get_nrof_partitions(
         df_memory_usage, nrof_workers, available_memory, min_partition_size, aimed_nrof_partitions_per_worker
     )
-    partitioned_df = df.repartition(npartitions=1).repartition(npartitions=nrof_partitions)
-    return partitioned_df
+    partitioned_df: dd.core.DataFrame  = df.repartition(npartitions=1).repartition(npartitions=nrof_partitions) # type: ignore
+    return partitioned_df 
 
 
 def get_repo_address_with_access_token(

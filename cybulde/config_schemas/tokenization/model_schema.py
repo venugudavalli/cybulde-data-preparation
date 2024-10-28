@@ -12,7 +12,7 @@ class ModelConfig:
 
 @dataclass
 class BPEModelConfig(ModelConfig):
-    _target_: str = "tokenizers.models.BEP"
+    _target_: str = "tokenizers.models.BPE"
     vocab: Optional[dict[str, int]] = None
     merges: Optional[list[Any]] = None
     cache_capacity: int = 10_000

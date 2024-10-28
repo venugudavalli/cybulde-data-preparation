@@ -5,4 +5,4 @@ def validate_config_parameter_is_in(
         raise ValueError(
             f"Parameter {parameter_name} has value {current_parameter_value}, but it should be one of {allowe_parameter_values}"
         )
-    return #current_parameter_value
+    return  # current_parameter_value
